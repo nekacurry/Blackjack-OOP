@@ -16,7 +16,7 @@ class Dealer(Hand):
     print(f"{self.name} stands with {self.score}")
 
   def hit(self):
-    self.draw_card(self.deck.deal_card())
+    self.draw_card(self.deck.deal())
     print(f"{self.name} hits")
     return self.cards
 
