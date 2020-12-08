@@ -1,11 +1,11 @@
 from hand import Hand
 
 class Dealer(Hand):
-  def __init__(self, name, deck):
+  def __init__(self, name, deck, bust=False):
     super().__init__()
     self.name = 'Dealer'
     self.deck = deck
-    self.bust = False
+    self.bust = bust
 
   def show_hand(self):
     for card in self.score:
@@ -24,3 +24,8 @@ class Dealer(Hand):
     if self.calculate_score() > 21:
       self.bust = True
       print(f"{self.name} gets bust")
+    else:
+      self.stand()
+
+  def display(self):
+    print(self.cards[1])
