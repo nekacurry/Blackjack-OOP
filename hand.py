@@ -27,6 +27,6 @@ class Hand:
           self.score += 10
     
     
-  def show_score(self):
+  def get_score(self):
     self.calculate_score()
     return self.score
