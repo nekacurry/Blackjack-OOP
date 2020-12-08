@@ -15,7 +15,7 @@ class Deck:
   
   def deal(self): 
     if len(self.deck) > 1:
-      return self.deck.pop(0)
+      return self.deck.pop()
 
   
 
