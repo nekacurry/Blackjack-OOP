@@ -1,15 +1,16 @@
 from hand import Hand
+from deck import Deck
 
 class Dealer(Hand):
   def __init__(self, name, deck, bust=False):
-    super().__init__()
+    Hand.__init__(self)
     self.name = 'Dealer'
     self.deck = deck
     self.bust = bust
 
   def show_hand(self):
-    for card in self.score:
-      print(card),
+    for card in self.cards:
+      print(card)
     print
 
   def stand(self):
@@ -28,4 +29,5 @@ class Dealer(Hand):
       self.stand()
 
   def display(self):
-    print(self.cards[1])
+    print(self.cards)
+

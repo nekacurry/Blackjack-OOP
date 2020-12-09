@@ -31,7 +31,7 @@ def play(player, deck):
 def report(player, dealer):
     if player.bust:
       print("You Busted! It's a Loss!")
-    elif len(player.hand) == 2 and player.get_score() == 21:
+    elif len((player.hand) == 2) and (player.get_score() == 21):
       print("Blackjack! You Win!")
     elif dealer.bust:
       print("Dealer Busted! You Win!")
@@ -45,15 +45,18 @@ def report(player, dealer):
 
 def game():
 
-  dealer = Dealer('Dealer', deck, bust)
   deck = Deck()
-  player = Player(input("Please enter your name: ")
+  dealer = Dealer('Dealer', deck)
+  player = Player(input("Please enter your name: "), deck, False)
 
 
-  for player in (players + dealer):
-    player.draw_card(deck.deal())
-    play(player, deck)
-    print
+  print("\nDealer:")
+  dealer.show_hand()
+  print
+
+  player.draw_card(deck.deal())
+  play(player, deck)
+  print
 
 if __name__ == '__main__':
   game()
