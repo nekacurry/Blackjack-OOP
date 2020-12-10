@@ -37,7 +37,7 @@ class Game:
     print()
 
     if choice == 'h':
-      print("\n Hit!\n")
+      print("\n<<<<<<< Hit! >>>>>>>>\n")
       self.player_hand.add_card(self.deck.deal())
       
       if self.devil_hand.get_value() < 17:
@@ -47,6 +47,7 @@ class Game:
 
 
       if self.player_hand.get_value() > 21:
+        self.results()
         print("\nYour soul just got BUSTED! You lose!")
         self.replay()
     else:
