@@ -1,9 +1,10 @@
 from card import Card
 
 class Player():
-  def __init__(self):
+  def __init__(self, name='Mortal'):
     self.cards = []
     self.value = 0
+    self.name = name
 
   def add_card(self, card):
     self.cards.append(card)

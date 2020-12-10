@@ -1,10 +1,11 @@
 from player import Player
 
-class Dealer(Player):
-  def __init__(self):
-    super().__init__()
+class Devil(Player):
+  def __init__(self, name='Devil'):
+    super().__init__(name)
     self.cards = []
     self.value = 0
+    self.name = name
 
   def display(self):
     print("hidden")
