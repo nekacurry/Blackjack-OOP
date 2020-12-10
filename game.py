@@ -7,8 +7,8 @@ import sys
 
 
 class Game:
-  def __init__(self, game_over=False):
-    self.game_over = game_over
+  def __init__(self):
+    pass
 
 #------------------------Hit Method--------------------------->
   def hit(self):
