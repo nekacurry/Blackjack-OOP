@@ -74,7 +74,7 @@ class Game:
       print("\nIt's a Draw, but don't you wanna win? Go ahead, say yes.")
 
     elif player_21:
-      print("\nBlackjack! Luck you!")
+      print("\nBlackjack! Lucky you!")
 
     elif devil_21:
       print("\nDevil blackjack! C'mon, having a soul isn't THAT great.")
@@ -127,7 +127,8 @@ class Game:
         if player_21 or devil_21:
           game_over = True
           self.is_21(
-              player_21, devil_21)
+            player_21, devil_21)
+          self.replay()
 
         else:
           self.hit()
