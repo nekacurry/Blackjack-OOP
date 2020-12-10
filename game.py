@@ -7,21 +7,26 @@ from player import Player
 
 class Game:
   def __init__(self, game_over=False):
-    game_over = game_over
+    self.game_over = game_over
 
-
+#------------------------Hit Method--------------------------->
   def hit(self):
+    '''the lower function turns uppercase letters in a string to lowercase
+    for whatever reason, my code gave me an error when not using it
+    would love some feedback as to why that happens!'''
+
     choice = input(("Press 'H' to Hit or a different key to Stand: ").lower())
 
     if choice == "h":
       self.player_hand.add_card(self.deck.deal())
       self.player_hand.display()
-      if self.player_is_over():
+      if self.player_hand.get_value() > 21:
         print("Your soul just got BUSTED! You lose!")
         self.replay()
     else:
       print(self.stand())
 
+#------------------------Stand Method--------------------------->
   def stand(self):
     player_hand = self.player_hand.get_value()
     devil_hand = self.devil_hand.get_value()
@@ -40,6 +45,7 @@ class Game:
       print("The Devil Wins! Don't worry, Hell is lovely this time of year!")
       self.replay()
 
+#------------------------Replay Method--------------------------->
   def replay(self):
     again = input("Dare to tempt your fate again? [Y/N] ")
     if again.lower() == "n":
@@ -47,8 +53,10 @@ class Game:
     else:
       print(self.play())
 
-
+#------------------------Check 21 Method--------------------------->
   def check_21(self):
+    '''checks for blackjack'''
+
     player = False
     devil = False
     if self.player_hand.get_value() == 21:
@@ -58,7 +66,10 @@ class Game:
 
     return player, devil
 
-  def results(self, player_21, devil_21):
+#------------------------21 Bool Method--------------------------->
+  def is21(self, player_21, devil_21):
+    '''strings for blackjack'''
+
     if player_21 and devil_21:
       print("It's a Draw, but don't you wanna win? Go ahead, say yes.")
 
@@ -67,10 +78,9 @@ class Game:
 
     elif devil_21:
       print("Devil blackjack! C'mon, having a soul isn't THAT great.")
-
-  def player_is_over(self):
-    return self.player_hand.get_value() > 21
   
+
+  #------------------------Play Method--------------------------->
   def play(self):
     playing = True
 
@@ -78,6 +88,7 @@ class Game:
       print('---------------------------------------------')
       print('-------------Devil\'s Blackjack---------------')
       print('---------------------------------------------')
+
       self.deck = Deck()
       self.deck.shuffle()
 
@@ -85,6 +96,8 @@ class Game:
       self.devil_hand = Devil()
 
       for _ in range(2):
+        '''adds 2 cards to player deck'''
+
         self.player_hand.add_card(self.deck.deal())
         self.devil_hand.add_card(self.deck.deal())
 
@@ -97,16 +110,20 @@ class Game:
       game_over = False
 
       while not game_over:
+        '''checks for immediate blackjack'''
+    
         player_21, devil_21 = self.check_21()
+
         if player_21 or devil_21:
           game_over = True
-          self.results(
+          self.is21(
               player_21, devil_21)
+
         else:
           self.hit()
       
 
-
+#------------------------Call Game--------------------------->
 if __name__ == "__main__":
     game = Game()
     game.play()

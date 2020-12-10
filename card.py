@@ -4,5 +4,6 @@ class Card:
     self.suit = suit
     self.value = value
 
+  '''returns suit/value into a proper string'''
   def __repr__(self):
     return " of ".join((self.value, self.suit))
