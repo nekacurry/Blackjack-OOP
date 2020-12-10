@@ -37,7 +37,7 @@ class Game:
     print()
 
     if choice == 'h':
-      print("\n<<<<<<< Hit! >>>>>>>>\n")
+      print("\n<*<*<*<*<*<*< Hit! >*>*>*>*>*>*>\n")
       self.player_hand.add_card(self.deck.deal())
       
       if self.devil_hand.get_value() < 17:
