@@ -11,6 +11,25 @@ class Game:
     self.__name = name
     self.__location = location
 
+
+#------------------------Print Cards Method----------------------->
+  def show_cards_output(self):
+    print(">> Your hand is: \n")
+    self.player_hand.display()
+    print("~~~~~~~~~~~~~~~~~~~~\n")
+    print(">> The Devil draws: \n")
+    self.devil_hand.display()
+    print("~~~~~~~~~~~~~~~~~~~~")
+
+#------------------------Results Method--------------------------->
+  def results(self):
+    player_hand = self.player_hand.get_value()
+    devil_hand = self.devil_hand.get_value()
+
+    print("\n~~~~~Results~~~~~")
+    print("\n>> Your hand: ", player_hand)
+    print(">> Devil's hand: ", devil_hand)
+
 #------------------------Hit Method--------------------------->
   def hit(self):
 
@@ -18,8 +37,15 @@ class Game:
     print()
 
     if choice == 'h':
+      print("\n Hit!\n")
       self.player_hand.add_card(self.deck.deal())
-      self.player_hand.display()
+      
+      if self.devil_hand.get_value() < 17:
+        self.devil_hand.add_card(self.deck.deal())
+
+      self.show_cards_output()
+
+
       if self.player_hand.get_value() > 21:
         print("\nYour soul just got BUSTED! You lose!")
         self.replay()
@@ -31,10 +57,8 @@ class Game:
     player_hand = self.player_hand.get_value()
     devil_hand = self.devil_hand.get_value()
 
-    print("~~~~~Results~~~~~")
-    print("\n>> Your hand: ", player_hand)
-    print(">> Devil's hand: \n", devil_hand)
-
+    self.results()
+  
     if player_hand > devil_hand:
       print("\nYou Win! You get to keep your soul!")
       self.replay()
@@ -69,6 +93,7 @@ class Game:
 #------------------------21 Bool Method--------------------------->
   def is_21(self, player_21, devil_21):
     '''strings for blackjack'''
+    self.results()
 
     if player_21 and devil_21:
       print("\nIt's a Draw, but don't you wanna win? Go ahead, say yes.")
@@ -111,12 +136,7 @@ class Game:
         self.player_hand.add_card(self.deck.deal())
         self.devil_hand.add_card(self.deck.deal())
 
-      print(">> Your hand is: \n")
-      self.player_hand.display()
-      print("~~~~~~~~~~~~~~~~~~~~\n")
-      print(">> The Devil draws: \n")
-      self.devil_hand.display()
-      print("~~~~~~~~~~~~~~~~~~~~")
+      self.show_cards_output()
 
       game_over = False
 

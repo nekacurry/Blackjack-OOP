@@ -13,8 +13,10 @@ class Devil(Player):
   def display(self):
     print("*** SECRET ***")
 
-    '''prints the second card drawn'''
-    print(self.cards[1])
+    devil_list = self.cards[1:5]
+    '''prints starting from the second card drawn'''
+    print(*devil_list, sep="\n")
+    '''puts each item in list on new line'''
     
 
   
