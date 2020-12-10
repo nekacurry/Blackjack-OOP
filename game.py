@@ -85,6 +85,7 @@ class Game:
     playing = True
 
     while playing:
+      print()
       print(' ,    ,    /\\   /\\')
       print('/( /\\ )\\  _\\ \\_/ /_')
       print('|\\_||_/| < \\_   _/ >')
@@ -94,9 +95,9 @@ class Game:
       print('   {}   \\  \\_____/  /''')
       print('   ()   /\\   )=(   /\\''')
       print('   {}  /  \\_/\\=/\\_/  \\''')
-      print('---------------------------------------------')
-      print('-------------Devil\'s Blackjack---------------')
-      print('---------------------------------------------\n')
+      print('----------------------------->')
+      print('------Devil\'s Blackjack------>')
+      print('----------------------------->\n')
 
       self.deck = Deck()
       self.deck.shuffle()
