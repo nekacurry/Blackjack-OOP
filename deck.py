@@ -11,14 +11,16 @@ class Deck:
                   for value in ["A", "2", "3", "4", "5", "6",
                   "7", "8","9", "10", "J", "Q", "K"]] * 4
 
+#------------------------Shuffle Method--------------------------->
   def shuffle(self):
     '''randomizes cards'''
 
     random.shuffle(self.cards)
   
+#------------------------Deal Method--------------------------->
   def deal(self): 
     '''adds card to player class's card list'''
-    
+
     if len(self.cards) > 1:
       return self.cards.pop()
 
