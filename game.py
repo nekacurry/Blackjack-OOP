@@ -49,7 +49,7 @@ class Game:
   def replay(self):
     again = input("\nDare to tempt your fate again? [Y/N] ")
     if again.lower() == "n":
-      sys.exit("\nHe'll get you next time!")
+      sys.exit("\nHe'll get you next time!\n")
     else:
       print(self.play())
 
