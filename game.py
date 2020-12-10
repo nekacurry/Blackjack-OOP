@@ -1,65 +1,101 @@
 from card import Card
 from deck import Deck
-from hand import Hand
 from dealer import Dealer
 from player import Player
 
 
-def play(player, deck):
-  player.display()
-  if player.name == 'Dealer':
-    while player.get_score() < 17:
-      player.hit()
-      player.display()
-    player.check_for_bust()
+class Game:
+  def __init__(self):
+    pass
 
-  else:
-    choice = input("Would you like to Stand or Hit?: ")
+  def play(self):
+    playing = True
 
-  if choice == "Stand":
-    player.stand()
+    while playing:
+      self.deck = Deck()
+      self.deck.shuffle()
 
-  while choice == "Hit":
-    player.hit()
-    player.display()
-    if player.get_score() > 21:
-      player.bust = True
-      print(f"{player.name} gets bust")
-      break
-    choice = input("Would you like to Hit again or Stand?: ")
+      self.player_hand = Player()
+      self.dealer_hand = Dealer()
 
-def report(player, dealer):
-    if player.bust:
-      print("You Busted! It's a Loss!")
-    elif len((player.hand) == 2) and (player.get_score() == 21):
-      print("Blackjack! You Win!")
-    elif dealer.bust:
-      print("Dealer Busted! You Win!")
-    elif (player.get_score() > dealer.get_score()):
-      print("You Win!")
-    elif player.get_score() == dealer.get_score():
-      print("It's a Tie!")
-    else:
-      print("Sorry, Dealer Wins!")
+      for _ in range(2):
+        self.player_hand.add_card(self.deck.deal())
+        self.dealer_hand.add_card(self.deck.deal())
+
+      print("Your hand is:")
+      self.player_hand.display()
+      print()
+      print("Dealer's hand is:")
+      self.dealer_hand.display()
+
+    game_over = False
+
+    while not game_over:
+      player_21, dealer_21 = self.check_21()
+      if player_21 or dealer_21:
+        game_over = True
+        self.results(
+            player_21, dealer_21)
+        continue
+    
+      choice = input(("Please choose [Hit / Stand] ").lower())
+      while choice not in ["h", "s", "hit", "stand"]:
+        choice = input("Please enter 'hit' or 'stand' (or H/S) ").lower()
+
+        if choice in ['hit', 'h']:
+          self.player_hand.add_card(self.deck.deal())
+          self.player_hand.display()
+          if self.player_is_over():
+            print("You busted! You lose!")
+            game_over = True
+
+        else:
+          player_hand = self.player_hand.get_value()
+          dealer_hand = self.dealer_hand.get_value()
+
+          print("~Results~")
+          print("Your hand:", player_hand)
+          print("Dealer's hand:", dealer_hand)
+
+          if player_hand > dealer_hand:
+            print("You Win!")
+          elif player_hand == dealer_hand:
+            print("It's a Tie!")
+          else:
+            print("Dealer Wins!")
+          game_over = True
+
+      again = input("Play Again? [Y/N] ")
+      if again.lower() == "n":
+        print("Thanks for playing!")
+        playing = False
+      else:
+        game_over = False
+
+  def check_21(self):
+    player = False
+    dealer = False
+    if self.player_hand.get_value() == 21:
+        player = True
+    if self.dealer_hand.get_value() == 21:
+        dealer = True
+
+    return player, dealer
+
+  def results(self, player_21, dealer_21):
+    if player_21 and dealer_21:
+      print("It's a Draw!")
+
+    elif player_21:
+      print("Blackjack! You win!")
+
+    elif dealer_21:
+      print("Dealer blackjack! Dealer wins!")
+
+  def player_is_over(self):
+    return self.player_hand.get_value() > 21
 
 
-def game():
-
-  deck = Deck()
-  dealer = Dealer('Dealer', deck)
-  player = Player(input("Please enter your name: "), deck, False)
-
-
-  print("\nDealer:")
-  dealer.show_hand()
-  print
-
-  player.draw_card(deck.deal())
-  play(player, deck)
-  print
-
-if __name__ == '__main__':
-  game()
-
-
-
+if __name__ == "__main__":
+    game = Game()
+    game.play()
