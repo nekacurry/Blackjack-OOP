@@ -2,6 +2,7 @@ from card import Card
 from deck import Deck
 from dealer import Devil
 from player import Player
+import sys
 
 
 
@@ -11,17 +12,15 @@ class Game:
 
 #------------------------Hit Method--------------------------->
   def hit(self):
-    '''the lower function turns uppercase letters in a string to lowercase
-    for whatever reason, my code gave me an error when not using it
-    would love some feedback as to why that happens!'''
 
-    choice = input(("Press 'H' to Hit or a different key to Stand: ").lower())
+    choice = input("\nPress 'H' to Hit or a different key to Stand: ")
+    print()
 
-    if choice == "h":
+    if choice == 'h':
       self.player_hand.add_card(self.deck.deal())
       self.player_hand.display()
       if self.player_hand.get_value() > 21:
-        print("Your soul just got BUSTED! You lose!")
+        print("\nYour soul just got BUSTED! You lose!")
         self.replay()
     else:
       print(self.stand())
@@ -31,25 +30,26 @@ class Game:
     player_hand = self.player_hand.get_value()
     devil_hand = self.devil_hand.get_value()
 
-    print("~Results~")
-    print("Your hand: ", player_hand)
-    print("Devil's hand: ", devil_hand)
+    print("~~~~~Results~~~~~")
+    print("\n>> Your hand: ", player_hand)
+    print(">> Devil's hand: ", devil_hand)
+    print()
 
     if player_hand > devil_hand:
-      print("You Win! You get to keep your soul!")
+      print("\nYou Win! You get to keep your soul!")
       self.replay()
     elif player_hand == devil_hand:
-      print("It's a Tie! He beckons you to play again")
+      print("\nIt's a Tie! He beckons you to play again")
       self.replay()
     else:
-      print("The Devil Wins! Don't worry, Hell is lovely this time of year!")
+      print("\nThe Devil Wins! Don't worry, Hell is lovely this time of year!")
       self.replay()
 
 #------------------------Replay Method--------------------------->
   def replay(self):
-    again = input("Dare to tempt your fate again? [Y/N] ")
+    again = input("\nDare to tempt your fate again? [Y/N] ")
     if again.lower() == "n":
-      print("He'll get you next time!")
+      sys.exit("\nHe'll get you next time!")
     else:
       print(self.play())
 
@@ -71,13 +71,13 @@ class Game:
     '''strings for blackjack'''
 
     if player_21 and devil_21:
-      print("It's a Draw, but don't you wanna win? Go ahead, say yes.")
+      print("\nIt's a Draw, but don't you wanna win? Go ahead, say yes.")
 
     elif player_21:
-      print("Blackjack! Luck you!")
+      print("\nBlackjack! Luck you!")
 
     elif devil_21:
-      print("Devil blackjack! C'mon, having a soul isn't THAT great.")
+      print("\nDevil blackjack! C'mon, having a soul isn't THAT great.")
   
 
   #------------------------Play Method--------------------------->
@@ -85,9 +85,18 @@ class Game:
     playing = True
 
     while playing:
+      print(' ,    ,    /\\   /\\')
+      print('/( /\\ )\\  _\\ \\_/ /_')
+      print('|\\_||_/| < \\_   _/ >')
+      print('\\______/  \\|0   0|/')
+      print('  _\\/_   _(_  ^  _)_')
+      print( ' ( () ) /`\\|V"""V| /\\''')
+      print('   {}   \\  \\_____/  /''')
+      print('   ()   /\\   )=(   /\\''')
+      print('   {}  /  \\_/\\=/\\_/  \\''')
       print('---------------------------------------------')
       print('-------------Devil\'s Blackjack---------------')
-      print('---------------------------------------------')
+      print('---------------------------------------------\n')
 
       self.deck = Deck()
       self.deck.shuffle()
@@ -101,11 +110,12 @@ class Game:
         self.player_hand.add_card(self.deck.deal())
         self.devil_hand.add_card(self.deck.deal())
 
-      print("Your hand is: ")
+      print(">> Your hand is: \n")
       self.player_hand.display()
-      print()
-      print("Devil's hand is: ")
+      print("~~~~~~~~~~~~~~~~~~~~\n")
+      print(">> The Devil draws: \n")
       self.devil_hand.display()
+      print("~~~~~~~~~~~~~~~~~~~~")
 
       game_over = False
 
