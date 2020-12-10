@@ -1,6 +1,6 @@
 from card import Card
 from deck import Deck
-from dealer import Devil
+from devil import Devil
 from player import Player
 import sys
 
