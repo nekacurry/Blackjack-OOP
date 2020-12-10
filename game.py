@@ -42,35 +42,35 @@ class Game:
         while choice not in ["h", "s", "hit", "stand"]:
           choice = input("Please enter 'hit' or 'stand' (or H/S) ").lower()
 
-          if choice in ['hit', 'h']:
-            self.player_hand.add_card(self.deck.deal())
-            self.player_hand.display()
-            if self.player_is_over():
-              print("You busted! You lose!")
-              game_over = True
-
-          else:
-            player_hand = self.player_hand.get_value()
-            dealer_hand = self.dealer_hand.get_value()
-
-            print("~Results~")
-            print("Your hand:", player_hand)
-            print("Dealer's hand:", dealer_hand)
-
-            if player_hand > dealer_hand:
-              print("You Win!")
-            elif player_hand == dealer_hand:
-              print("It's a Tie!")
-            else:
-              print("Dealer Wins!")
+        if choice in ['hit', 'h']:
+          self.player_hand.add_card(self.deck.deal())
+          self.player_hand.display()
+          if self.player_is_over():
+            print("You busted! You lose!")
             game_over = True
 
-        again = input("Play Again? [Y/N] ")
-        if again.lower() == "n":
-          print("Thanks for playing!")
-          playing = False
         else:
-          game_over = False
+          player_hand = self.player_hand.get_value()
+          dealer_hand = self.dealer_hand.get_value()
+
+          print("~Results~")
+          print("Your hand:", player_hand)
+          print("Dealer's hand:", dealer_hand)
+
+          if player_hand > dealer_hand:
+            print("You Win!")
+          elif player_hand == dealer_hand:
+            print("It's a Tie!")
+          else:
+            print("Dealer Wins!")
+          game_over = True
+
+      again = input("Play Again? [Y/N] ")
+      if again.lower() == "n":
+        print("Thanks for playing!")
+        playing = False
+      else:
+        game_over = False
 
   def check_21(self):
     player = False
