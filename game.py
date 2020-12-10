@@ -67,7 +67,7 @@ class Game:
     return player, devil
 
 #------------------------21 Bool Method--------------------------->
-  def is21(self, player_21, devil_21):
+  def is_21(self, player_21, devil_21):
     '''strings for blackjack'''
 
     if player_21 and devil_21:
@@ -116,7 +116,7 @@ class Game:
 
         if player_21 or devil_21:
           game_over = True
-          self.is21(
+          self.is_21(
               player_21, devil_21)
 
         else:

@@ -15,7 +15,7 @@ class Player():
 #------------------------Calculate Value Method--------------------------->
   def calculate_value(self):
     self.value = 0
-    has_ace = False
+    is_ace = False
     for card in self.cards:
       if card.value.isnumeric():
         self.value += int(card.value)
@@ -26,12 +26,12 @@ class Player():
         '''Aces count as 11, all other face cards count as 10'''
 
         if card.value == "A":
-          has_ace = True
+          is_ace = True
           self.value += 11
         else:
           self.value += 10
 
-    if has_ace and self.value > 21:
+    if is_ace and self.value > 21:
 
       '''Aces count as a 1 if the player would otherwise bust.
       this if statement adjusts the score in response'''
