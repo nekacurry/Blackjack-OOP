@@ -7,8 +7,9 @@ import sys
 
 
 class Game:
-  def __init__(self):
-    pass
+  def __init__(self, name='Devil\'s Blackjack', location = 'Hell' ):
+    self.name = name
+    self.location = location
 
 #------------------------Hit Method--------------------------->
   def hit(self):
