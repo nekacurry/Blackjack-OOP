@@ -5,4 +5,4 @@ Play against the Devil in this simple command line blackjack game.
 
 Make sure you don't lose your soul along the way!
 
-![Screenshot](/Screenshot.png)
+<img src="Screenshot.png">
