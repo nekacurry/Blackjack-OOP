@@ -4,7 +4,7 @@ class Player():
   def __init__(self, name='Mortal'):
     self.cards = []
     self.value = 0
-    self.name = name
+    self._name = name
 
 #------------------------Add Card Method--------------------------->
   def add_card(self, card):

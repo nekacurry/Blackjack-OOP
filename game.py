@@ -8,8 +8,8 @@ import sys
 
 class Game:
   def __init__(self, name='Devil\'s Blackjack', location = 'Hell' ):
-    self.name = name
-    self.location = location
+    self.__name = name
+    self.__location = location
 
 #------------------------Hit Method--------------------------->
   def hit(self):
@@ -33,8 +33,7 @@ class Game:
 
     print("~~~~~Results~~~~~")
     print("\n>> Your hand: ", player_hand)
-    print(">> Devil's hand: ", devil_hand)
-    print()
+    print(">> Devil's hand: \n", devil_hand)
 
     if player_hand > devil_hand:
       print("\nYou Win! You get to keep your soul!")
